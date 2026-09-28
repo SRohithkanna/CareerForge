@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from app.database.base import Base
 from app.database.connection import engine
 from app.models import User
+from app.api.auth import router as auth_router
 
 app = FastAPI(
     title="CareerForge API",
@@ -11,7 +12,7 @@ app = FastAPI(
 )
 
 Base.metadata.create_all(bind=engine)
-
+app.include_router(auth_router)
 
 @app.get("/")
 def home():
