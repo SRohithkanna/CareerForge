@@ -7,7 +7,7 @@ from app.schemas.auth import UserCreate, UserResponse
 from app.core.security import hash_password
 from app.core.security import hash_password, verify_password, create_access_token
 from app.schemas.auth import UserCreate, UserLogin, UserResponse
-
+from app.api.dependencies import get_current_user,get_db
 
 router = APIRouter(
     prefix="/api/auth",
@@ -85,3 +85,6 @@ def login_user(
         "access_token": access_token,
         "token_type": "bearer"
     }
+@router.get("/me", response_model=UserResponse)
+def get_me(current_user: User = Depends(get_current_user)):
+    return current_user
