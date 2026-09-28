@@ -5,6 +5,8 @@ from app.database.connection import SessionLocal
 from app.models.user import User
 from app.schemas.auth import UserCreate, UserResponse
 from app.core.security import hash_password
+from app.core.security import hash_password, verify_password, create_access_token
+from app.schemas.auth import UserCreate, UserLogin, UserResponse
 
 
 router = APIRouter(
@@ -50,3 +52,36 @@ def register_user(
     db.refresh(user)
 
     return user
+
+@router.post("/login")
+def login_user(
+    user_data: UserLogin,
+    db: Session = Depends(get_db)
+):
+    user = db.query(User).filter(
+        User.email == user_data.email
+    ).first()
+
+    if not user:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password"
+        )
+
+    if not verify_password(
+        user_data.password,
+        user.password_hash
+    ):
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid email or password"
+        )
+
+    access_token = create_access_token(
+        {"sub": str(user.id)}
+    )
+
+    return {
+        "access_token": access_token,
+        "token_type": "bearer"
+    }
