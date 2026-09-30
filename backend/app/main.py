@@ -6,6 +6,7 @@ from app.models import User
 from app.api.auth import router as auth_router
 from app.api.resumes import router as resume_router
 from app.api.jobs import router as job_router
+from app.api.matching import router as matching_router
 
 app = FastAPI(
     title="CareerForge API",
@@ -17,6 +18,8 @@ Base.metadata.create_all(bind=engine)
 app.include_router(auth_router)
 app.include_router(resume_router)
 app.include_router(job_router)
+app.include_router(matching_router)
+
 
 @app.get("/")
 def home():
