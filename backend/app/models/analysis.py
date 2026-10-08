@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import DateTime, Float, ForeignKey, JSON, Text
+from sqlalchemy import DateTime, Float, ForeignKey, JSON,String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.database.base import Base
@@ -31,35 +31,39 @@ class Analysis(Base):
         nullable=False,
         index=True
     )
-
-    semantic_score: Mapped[float] = mapped_column(
+    status: Mapped[str] = mapped_column(
+    String(20),
+    nullable=False,
+    default="processing"
+    )
+    semantic_score: Mapped[float | None] = mapped_column(
         Float,
-        nullable=False
+        nullable=True
     )
 
-    required_skills: Mapped[list] = mapped_column(
+    required_skills: Mapped[list | None] = mapped_column(
         JSON,
-        nullable=False
+        nullable=True
     )
 
-    matched_skills: Mapped[list] = mapped_column(
+    matched_skills: Mapped[list | None] = mapped_column(
         JSON,
-        nullable=False
+        nullable=True
     )
 
-    missing_skills: Mapped[list] = mapped_column(
+    missing_skills: Mapped[list | None] = mapped_column(
         JSON,
-        nullable=False
+        nullable=True
     )
 
     explanation: Mapped[str] = mapped_column(
         Text,
-        nullable=False
+        nullable=True
     )
 
-    recommendations: Mapped[list] = mapped_column(
+    recommendations: Mapped[list | None] = mapped_column(
         JSON,
-        nullable=False
+        nullable=True
     )
 
     created_at: Mapped[datetime] = mapped_column(
