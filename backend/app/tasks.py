@@ -1,3 +1,4 @@
+
 from app.core.celery_app import celery_app
 from app.database.connection import SessionLocal
 from app.models.resume import Resume
@@ -8,9 +9,8 @@ from app.services.career_analysis import analyze_resume_against_job
 
 @celery_app.task(
     bind=True,
-    autoretry_for=(RuntimeError,),
-    retry_backoff=True,
-    retry_kwargs={"max_retries": 3}
+    max_retries=3,
+    default_retry_delay=5
 )
 def analyze_resume_job_task(
     self,
@@ -27,24 +27,18 @@ def analyze_resume_job_task(
             Resume.user_id == user_id
         ).first()
 
-        if not resume:
-            raise ValueError("Resume not found")
-
         job = db.query(Job).filter(
             Job.id == job_id,
             Job.user_id == user_id
         ).first()
-
-        if not job:
-            raise ValueError("Job not found")
 
         analysis = db.query(Analysis).filter(
             Analysis.id == analysis_id,
             Analysis.user_id == user_id
         ).first()
 
-        if not analysis:
-            raise ValueError("Analysis not found")
+        if not resume or not job or not analysis:
+            raise ValueError("Resume, job, or analysis not found")
 
         try:
             result = analyze_resume_against_job(
@@ -67,14 +61,29 @@ def analyze_resume_job_task(
                 "status": "completed"
             }
 
-        except RuntimeError:
-            # Let Celery automatically retry
-            raise
+        except Exception as error:
+            from google.genai import errors
 
-        except Exception:
+            if isinstance(error, errors.ServerError):
+                db.rollback()
+
+                if self.request.retries < self.max_retries:
+                    raise self.retry(
+                        exc=error,
+                        countdown=5 * (2 ** self.request.retries)
+                    )
+
+                analysis.status = "failed"
+                db.commit()
+                return {
+                    "analysis_id": analysis.id,
+                    "status": "failed"
+                }
+
             analysis.status = "failed"
             db.commit()
             raise
 
     finally:
         db.close()
+        
