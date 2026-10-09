@@ -6,8 +6,14 @@ from app.models.analysis import Analysis
 from app.services.career_analysis import analyze_resume_against_job
 
 
-@celery_app.task
+@celery_app.task(
+    bind=True,
+    autoretry_for=(RuntimeError,),
+    retry_backoff=True,
+    retry_kwargs={"max_retries": 3}
+)
 def analyze_resume_job_task(
+    self,
     user_id: int,
     resume_id: int,
     job_id: int,
@@ -60,6 +66,10 @@ def analyze_resume_job_task(
                 "analysis_id": analysis.id,
                 "status": "completed"
             }
+
+        except RuntimeError:
+            # Let Celery automatically retry
+            raise
 
         except Exception:
             analysis.status = "failed"
