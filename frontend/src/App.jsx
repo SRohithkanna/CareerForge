@@ -1,122 +1,87 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="app-layout">
+      <aside className="sidebar">
+        <h2 className="brand">CareerForge</h2>
+
+        <nav>
+          <a className="nav-link active" href="#dashboard">
+            Dashboard
+          </a>
+          <a className="nav-link" href="#resumes">
+            My Resumes
+          </a>
+          <a className="nav-link" href="#jobs">
+            Job Descriptions
+          </a>
+          <a className="nav-link" href="#analyses">
+            Analysis History
+          </a>
+        </nav>
+
+        <div className="sidebar-footer">
+          AI-powered career intelligence
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+      </aside>
+
+      <main className="main-content" id="dashboard">
+        <header className="topbar">
+          <div>
+            <p className="eyebrow">CAREER INTELLIGENCE</p>
+            <h1>Your career dashboard</h1>
+            <p className="muted">
+              Understand your skills. Find your gaps. Prepare for your next role.
+            </p>
+          </div>
+          <span className="status-pill">MVP</span>
+        </header>
+
+        <section className="welcome-card">
+          <div>
+            <p className="eyebrow">YOUR NEXT OPPORTUNITY</p>
+            <h2>Make every application count.</h2>
+            <p>
+              Compare your resume with a job description to discover
+              matching skills and areas to improve.
+            </p>
+          </div>
+        </section>
+
+        <section className="section">
+          <h2>Workspace</h2>
+          <p className="muted">
+            Manage your career documents and AI-powered assessments.
           </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+          <div className="feature-grid">
+            <article className="feature-card" id="resumes">
+              <span className="feature-icon">01</span>
+              <h3>My Resumes</h3>
+              <p>Upload and manage your PDF resumes.</p>
+              <span className="card-label">Resume management</span>
+            </article>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            <article className="feature-card" id="jobs">
+              <span className="feature-icon">02</span>
+              <h3>Job Descriptions</h3>
+              <p>Save roles you want to evaluate your fit for.</p>
+              <span className="card-label">Job tracking</span>
+            </article>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+            <article className="feature-card" id="analyses">
+              <span className="feature-icon">03</span>
+              <h3>AI Analysis</h3>
+              <p>Explore semantic scores, missing skills, and recommendations.</p>
+              <span className="card-label">AI career insights</span>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;

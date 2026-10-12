@@ -8,11 +8,19 @@ from app.api.resumes import router as resume_router
 from app.api.jobs import router as job_router
 from app.api.matching import router as matching_router
 from app.api.analyses import router as analyses_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="CareerForge API",
     description="AI Career Intelligence Platform",
     version="1.0.0"
+)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 
