@@ -355,3 +355,386 @@ p {
     padding: 24px;
   }
 }
+
+.logout-button {
+  border: 1px solid #dedfff;
+  border-radius: 10px;
+  padding: 10px 16px;
+  background: #ffffff;
+  color: #45419f;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.logout-button:hover {
+  background: #eeeefe;
+}
+
+/* ========================================
+   AUTHENTICATION PAGES
+======================================== */
+
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  background:
+    radial-gradient(ellipse at top left, #e7e8ff 0%, transparent 45%),
+    #f6f7fb;
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  flex-direction: column;
+  padding: 42px;
+  background: #ffffff;
+  border: 1px solid #e5e7f1;
+  border-radius: 22px;
+  box-shadow: 0 24px 70px rgba(31, 38, 75, 0.10);
+}
+
+.auth-brand {
+  align-self: flex-start;
+  margin-bottom: 34px;
+  font-family: "Manrope", sans-serif;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: #514db5;
+}
+
+.auth-card h1 {
+  margin: 0 0 10px;
+  font-size: clamp(28px, 4vw, 34px);
+  line-height: 1.25;
+  color: #202438;
+}
+
+.auth-description {
+  margin: 0 0 30px;
+  color: #697187;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.auth-card label {
+  display: block;
+  margin: 0 0 8px;
+  color: #30364b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.auth-card input {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 48px;
+  margin: 0 0 20px;
+  padding: 0 14px;
+  border: 1px solid #dce0ec;
+  border-radius: 10px;
+  outline: none;
+  background: #ffffff;
+  color: #202438;
+  font-size: 14px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.auth-card input::placeholder {
+  color: #9a9fb0;
+}
+
+.auth-card input:focus {
+  border-color: #6863d5;
+  box-shadow: 0 0 0 3px rgba(104, 99, 213, 0.13);
+}
+
+.auth-card button {
+  width: 100%;
+  min-height: 48px;
+  margin-top: 6px;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 10px;
+  background: #514db5;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.auth-card button:hover:not(:disabled) {
+  background: #403c9d;
+  transform: translateY(-1px);
+}
+
+.auth-card button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.auth-error {
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid #f2caca;
+  border-radius: 9px;
+  background: #fff1f1;
+  color: #b42318;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.auth-switch {
+  margin: 24px 0 0;
+  color: #697187;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.auth-switch a {
+  color: #514db5;
+  font-weight: 700;
+}
+
+.auth-switch a:hover {
+  color: #403c9d;
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .auth-page {
+    padding: 20px 14px;
+  }
+
+  .auth-card {
+    padding: 28px 22px;
+    border-radius: 17px;
+  }
+
+  .auth-brand {
+    margin-bottom: 28px;
+  }
+}
+
+/* Resume management */
+
+.page-content {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 30px;
+}
+
+.page-header h1 {
+  margin-bottom: 10px;
+}
+
+.resume-upload-card {
+  padding: 28px;
+  margin-bottom: 32px;
+  border: 1px solid #e1e4ef;
+  border-radius: 16px;
+  background: #ffffff;
+}
+
+.resume-upload-card h2,
+.resume-list-section h2 {
+  margin-bottom: 8px;
+  color: #202438;
+}
+
+.resume-upload-card > p {
+  margin-bottom: 22px;
+}
+
+.resume-upload-card form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.file-picker {
+  display: flex;
+  flex: 1;
+  min-width: 220px;
+  align-items: center;
+  padding: 12px 14px;
+  border: 1px dashed #bfc3dc;
+  border-radius: 10px;
+  color: #4f5872;
+  background: #fafaff;
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.file-picker input {
+  width: 100%;
+  margin-top: 8px;
+}
+
+.resume-upload-card form > button {
+  padding: 13px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #514db5;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.resume-upload-card form > button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.resume-list-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.resume-count {
+  display: inline-flex;
+  min-width: 28px;
+  height: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #eeeefe;
+  color: #514db5;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.resume-list {
+  display: grid;
+  gap: 12px;
+}
+
+.resume-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px;
+  border: 1px solid #e1e4ef;
+  border-radius: 14px;
+  background: #ffffff;
+}
+
+.resume-file-icon {
+  display: flex;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #eeeefe;
+  color: #514db5;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.resume-file-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.resume-file-info h3 {
+  margin-bottom: 6px;
+  overflow-wrap: anywhere;
+}
+
+.resume-file-info p {
+  margin-bottom: 0;
+  font-size: 12px;
+}
+
+.delete-button {
+  padding: 9px 13px;
+  border: 1px solid #f0c9cc;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #b42332;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background: #fff1f2;
+}
+
+.empty-state {
+  padding: 36px 20px;
+  border: 1px dashed #d4d8e7;
+  border-radius: 14px;
+  text-align: center;
+  background: #ffffff;
+}
+
+.empty-state h3 {
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  margin-bottom: 0;
+}
+
+.feedback-error,
+.feedback-success {
+  margin-bottom: 20px;
+  padding: 12px 14px;
+  border-radius: 9px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.feedback-error {
+  border: 1px solid #f2caca;
+  background: #fff1f1;
+  color: #b42318;
+}
+
+.feedback-success {
+  border: 1px solid #b7e4c7;
+  background: #effaf2;
+  color: #17663a;
+}
+
+@media (max-width: 600px) {
+  .resume-upload-card {
+    padding: 20px;
+  }
+
+  .resume-upload-card form {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .resume-upload-card form > button {
+    width: 100%;
+  }
+
+  .resume-item {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .delete-button {
+    margin-left: 62px;
+  }
+}
