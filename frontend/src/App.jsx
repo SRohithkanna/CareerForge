@@ -7,6 +7,7 @@ import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Resumes from "./pages/Resumes";
 import Jobs from "./pages/Jobs";
+import Analyses from "./pages/Analyses";
 
 function Dashboard() {
   return (
@@ -128,6 +129,31 @@ function App() {
 
         <main className="main-content">
           <Jobs />
+        </main>
+      </div>
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/analyses"
+  element={
+    <ProtectedRoute>
+      <div className="app-layout">
+        <aside className="sidebar">
+          <h2 className="brand">CareerForge</h2>
+          <nav>
+            <a className="nav-link" href="/">Dashboard</a>
+            <a className="nav-link" href="/resumes">My Resumes</a>
+            <a className="nav-link" href="/jobs">Job Descriptions</a>
+            <a className="nav-link active" href="/analyses">Analysis History</a>
+          </nav>
+          <div className="sidebar-footer">
+            AI-powered career intelligence
+          </div>
+        </aside>
+
+        <main className="main-content">
+          <Analyses />
         </main>
       </div>
     </ProtectedRoute>
