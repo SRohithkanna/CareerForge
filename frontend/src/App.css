@@ -1203,3 +1203,19 @@ p {
     padding: 20px;
   }
 }
+.dashboard-stat {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2563eb;
+  margin: 12px 0;
+}
+
+.feature-card .card-label {
+  display: inline-block;
+  margin-top: 12px;
+  text-decoration: none;
+}
+
+.feature-card .card-label:hover {
+  text-decoration: underline;
+}
